@@ -430,7 +430,9 @@ class GeoclawRunner():
         time_offset : np.datetime64
             Usually, time of landfall
         areas : dict
-            Landfall event (single iterator output from TCSurgeEvents).
+            Landfall event (single iterator output from TCSurgeEvents). A 'wind_area'. a
+            'landfall_area' and a list of 'surge_areas' are required to determine the total model
+            domain, the base sea level, and the areas of refinement for the topography.
         centroids : np.array
             Points for which to record the maximum height of inundation.
             Each row is a lat-lon point.

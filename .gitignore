@@ -59,6 +59,8 @@ climada/entity/impact_funcs/test/data/test_write.xlsx
 climada/hazard/test/data/tc_tracks_nc/*
 climada/hazard/test/data/test_centr.h5
 climada/hazard/test/data/test_haz.h5
+climada/hazard/test/data/zos_monthly2.nc
+climada/hazard/test/data/surge_topo2.tif
 climada/test/data/1988234N13299.nc
 climada/test/data/exposure_buildings_default_47_7.h5
 climada/test/data/exposure_high_47_8.h5
