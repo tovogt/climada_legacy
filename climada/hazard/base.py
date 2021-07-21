@@ -1471,7 +1471,7 @@ class Hazard():
         --------
         hazard.centroids.union: combine centroids
         """
-        #Check units consistency among hazards
+        # check units consistency among hazards
         haz_types = {haz.tag.haz_type
                     for haz in haz_list
                     if haz.tag.haz_type != ''
@@ -1489,26 +1489,23 @@ class Hazard():
         elif len(units) == 0:
             units = {''}
 
-        #Define comon centroids
-        centroids = Centroids().union(*[haz.centroids
-                                           for haz in haz_list])
-        #Define empty concatenate hazard
-        haz_concat = Hazard()
+        centroids = Centroids.union(*[haz.centroids for haz in haz_list])
+        haz_concat = haz_list[0].__class__()
         haz_concat.units = units.pop()
         haz_concat.centroids = centroids
 
-        #Indices for mapping matrices onto common centroids
+        # indices for mapping matrices onto common centroids
         hazcent_in_cent_idx_list = [
             u_coord.assign_coordinates(haz.centroids.coord, centroids.coord,
                                        threshold=0)
             for haz in haz_list
             ]
 
-        #Concatenate attributes - hazards are assumed to have the same attributes
+        # concatenate attributes - hazards are assumed to have the same attributes
         for attr_name in vars(haz_list[0]).keys():
             attr_val_list = [getattr(haz, attr_name) for haz in haz_list]
             if isinstance(attr_val_list[0], sparse.csr.csr_matrix):
-                #Map sparse matrix onto centroids.
+                # map sparse matrix onto centroids.
                 matrix = (
                     sparse.csr_matrix(
                         (matrix.data, cent_idx[matrix.indices], matrix.indptr),
